@@ -1,63 +1,27 @@
 import {Component, StrictMode} from 'react';
 import './App.css';
 
-// base rules creating components
-
-const Header = () => {
-  return <h2> Hello world!</h2>
+//function WhoAmI (props) { - only reading status
+// we can transfer function, objects, data 
+function WhoAmI ({name, surname, link}) { 
+  return(
+    <div>
+        <h1> {name.firstName} {surname}</h1>
+        <a href={link()}>My profile</a>
+    </div>
+  )
 }
-/* const Feild = () => {
-  const holder = 'Enter here';
-  const styleField = {
-    width: '300px' 
-  };
-  return <input 
-          placeholder={holder} 
-          type="text"
-          style={styleField}/>
-} */
-// class-based approach inheritance (наследование) extends
-class Feild extends Component {
-  render() {
-      const holder = 'Enter here';
-      const styleField = {
-        width: '400px' 
-      };
-      return <input 
-      placeholder={holder} 
-      type="text"
-      style={styleField}/>
-  }
-
-}
-
-
-function Btn() {
-  const text = 'Log in';
-  const logged = false;
-  // function transfer
-/*   const res = () => {
-    return 'Log in here';
-  } */
-  // or another elements
-  /* const p = <p> Log in</p>; */
-  // or logical
-  return <button>{logged ? 'Enter': text}</button>  //ternar operator  - logged ? 'Enter': text
- 
-}
-
-
 function App() {
   return (
     <div className="App">
      <StrictMode>
-        <Header/>
+        <WhoAmI name={{firstName: 'Diana'}} surname="Lytvyniuk" link={() => {return 'Diana.vn.ua'}}/>
+        <WhoAmI name={{firstName: 'Viacheslav'}} surname="Lytvyniuk" link={() => {return 'Viacheslav.vn.ua'}}/>
+        <WhoAmI name={{firstName: 'Rinat'}} surname="Lytvyniuk" link={() => {return 'Rinat.vn.ua'}}/>
       </StrictMode> 
-      <Feild/>
-      <Btn/>
     </div>
   );
 }
 
-export {Header};
+
 export default App;
