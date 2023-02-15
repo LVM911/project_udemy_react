@@ -9,6 +9,7 @@ class WhoAmI extends Component {
         super(props);
         this.state = {
           years: 12,
+          position: '',
           text: '++++'
 
         }
@@ -21,15 +22,27 @@ class WhoAmI extends Component {
           years: state.years +1
       }))
     }
+    // for enter a position
+    commitInputChanges = (e) =>{
+      this.setState({
+        position: e.target.value
+      })
+      console.log(e.target.value);
+    }
      
     render() {
       //destructurisation
       const {name, surname, link} = this.props;
+      const {position, years} = this.state;
       return (
         <div>
           <button onClick={this.nextYear}>{this.state.text}</button>
-           <h1> {name.firstName} {surname}, age  = {this.state.years}</h1>
+           <h1> {name.firstName} {surname}, 
+           age  = {years}, 
+           position = {position}</h1>
            <a href={link()}>My profile</a>
+           <span>Enter a position</span>
+           <input type="text" onChange={this.commitInputChanges}/>
         </div>
       )
     }
