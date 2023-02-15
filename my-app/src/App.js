@@ -3,14 +3,38 @@ import './App.css';
 
 //function WhoAmI (props) { - only reading status
 // we can transfer function, objects, data 
-function WhoAmI ({name, surname, link}) { 
-  return(
-    <div>
-        <h1> {name.firstName} {surname}</h1>
-        <a href={link()}>My profile</a>
-    </div>
-  )
+class WhoAmI extends Component {
+  // use props in clasess
+    constructor(props) {
+        super(props);
+        this.state = {
+          years: 12,
+          text: '++++'
+
+        }
+    }
+    // new method for change years - important use only arrow function
+    nextYear = () => {
+    // cange condition - setState command
+    // when state  (condition) depends  on the prevision
+      this.setState(state => ({ // this is callback finction that returns our new state object 
+          years: state.years +1
+      }))
+    }
+     
+    render() {
+      //destructurisation
+      const {name, surname, link} = this.props;
+      return (
+        <div>
+          <button onClick={this.nextYear}>{this.state.text}</button>
+           <h1> {name.firstName} {surname}, age  = {this.state.years}</h1>
+           <a href={link()}>My profile</a>
+        </div>
+      )
+    }
 }
+
 function App() {
   return (
     <div className="App">
