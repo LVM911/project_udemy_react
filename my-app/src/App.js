@@ -11,8 +11,8 @@ class WhoAmI extends Component {
           years: 12,
           position: '',
           text: '++++'
-
         }
+        this.nextYear = this.nextYear.bind(this); // привязываем к класу
     }
     // new method for change years - important use only arrow function
     nextYear = () => {
