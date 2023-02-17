@@ -15,26 +15,40 @@ class EmployeesListItem extends Component{
         increase:!increase
         }))
     }
+   // method add Star
+   onStar = () => {
+    // синтаксис деструктуризиции
+     this.setState(({instar}) =>({
+         instar:!instar
+         }))
+     }    
 
     render() {
         const {name, salary} = this.props;
         // increase - get from state
         const {increase} = this.state;
+        const {instar} = this.state;
+
         let className = "list-group-item d-flex justify-content-between";
+        let classNameInput = "list-group-item-input";
         if (increase){
             className += ' increase';
+            
         }
-
-
+        if (instar) {
+            className += ' like list-group-item-danger';
+            classNameInput += ' list-group-item-danger';
+        }
+        //list-group-item.like .fa-star
         return (
             <li className={className}>
-                <span className="list-group-item-label">{name}</span>
-                <input type="text" className="list-group-item-input" defaultValue={salary + '$'}/>
+                <span className="list-group-item-label"
+                 onClick={this.onStar}>{name}</span>
+                <input type="text" className={classNameInput} defaultValue={salary + '$'}/>
                 <div className='d-flex justify-content-center align-items-center'>
                     <button type="button"
                         className="btn-cookie btn-sm"
-                        onClick={this.onIncrease}>
-                        
+                        onClick={this.onIncrease}>                        
                         <i className="fas fa-cookie"></i>
                     </button>
 
