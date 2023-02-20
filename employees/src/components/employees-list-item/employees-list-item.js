@@ -1,33 +1,9 @@
-import {Component} from 'react'
+
 import './employees-list-item.css';
 
-class EmployeesListItem extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            increase: false
-        }
-    }
-   // method for cookie
-    onIncrease = () => {
-   // синтаксис деструктуризиции
-    this.setState(({increase}) =>({
-        increase:!increase
-        }))
-    }
-   // method add Star
-   onStar = () => {
-    // синтаксис деструктуризиции
-     this.setState(({instar}) =>({
-         instar:!instar
-         }))
-     }    
+const EmployeesListItem = (props) => {
 
-    render() {
-        const {name, salary, onDelete} = this.props;
-        // increase - get from state
-        const {increase} = this.state;
-        const {instar} = this.state;
+        const {name, salary, onDelete, onToggleIncrease, onToggleRise, increase, rise} = props;
 
         let className = "list-group-item d-flex justify-content-between";
         let classNameInput = "list-group-item-input";
@@ -35,20 +11,19 @@ class EmployeesListItem extends Component{
             className += ' increase';
             
         }
-        if (instar) {
+        if (rise) {
             className += ' like list-group-item-danger';
-            classNameInput += ' list-group-item-danger';
+            classNameInput += ' list-group-item-danger'; 
         }
         //list-group-item.like .fa-star
         return (
             <li className={className}>
-                <span className="list-group-item-label"
-                 onClick={this.onStar}>{name}</span>
+                <span className="list-group-item-label" onClick={onToggleRise}>{name}</span>
                 <input type="text" className={classNameInput} defaultValue={salary + '$'}/>
                 <div className='d-flex justify-content-center align-items-center'>
                     <button type="button"
                         className="btn-cookie btn-sm"
-                        onClick={this.onIncrease}>                        
+                        onClick={onToggleIncrease}>                        
                         <i className="fas fa-cookie"></i>
                     </button>
 
@@ -61,7 +36,7 @@ class EmployeesListItem extends Component{
                 </div>
             </li>
         ) 
-    }
+  
 }
 
 export default EmployeesListItem;

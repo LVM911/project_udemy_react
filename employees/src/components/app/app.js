@@ -15,9 +15,9 @@ class App extends Component {
         super(props);
         this.state = {
             data: [
-                {name: 'Diana L.', salary: 1001, increase: false, id: 1 },
-                {name: 'Viacheslav L.', salary: 1002, increase: true, id: 2 },
-                {name: 'Rinat L.', salary: 1003, increase: false , id: 3 },
+                {name: 'Diana L.', salary: 1001, increase: false, rise: true, id: 1 },
+                {name: 'Viacheslav L.', salary: 1002, increase: true, rise: false,  id: 2 },
+                {name: 'Rinat L.', salary: 1003, increase: false , rise: false, id: 3 },
             ]   
         }
         this.maxId = 4;
@@ -49,6 +49,7 @@ class App extends Component {
             name,
             salary,
             increase: false,
+            rise: false,
             id: this.maxId++
         }
         this.setState(({data}) => {
@@ -58,7 +59,34 @@ class App extends Component {
             }
         });
     }
+    // onTogleIncrease
+    onToggleIncrease = (id) => {
+/*         this.setState (({data}) => {
+            const index = data.findIndex(elem => elem.id === id);
+            
+            const old = data[index];
+            const newItem = {...old, increase: !old.increase}; // Написанные свойства, после old будут заменять
+            // создаем новое свойство, которое берет значение и заменяет на противоположное 
+            const newArr = [... data.slice(0, index), newItem, ...data.slice(index +1) ]; // создание нового масива с кусочков/
 
+            return {
+                data: newArr
+            }
+        })  */
+// Method 2
+        this.setState(({data}) => ({
+            data: data.map(item => {
+                if (item.id === id) {
+                    return {...item, increase: !item.increase}
+                }
+                return item;
+            })           
+        }))
+
+    } 
+    onToggleRise = (id) => {
+        console.log(`Rise this ${id}`);
+    } 
 
     render() {
         return (
@@ -71,7 +99,9 @@ class App extends Component {
 
                 <EmployeesList 
                 data={this.state.data}
-                onDelete={this.deleteItem}/> 
+                onDelete={this.deleteItem}
+                onToggleIncrease={this.onToggleIncrease}
+                onToggleRise={this.onToggleRise}/> 
                 <EmployeesAddForm
                 onAdd={this.addItem}/> 
             
