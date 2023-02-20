@@ -2,7 +2,7 @@ import EmployeesListItem from "../employees-list-item/employees-list-item";
 
 import './emploees-list.css';
 
-const EmployeesList = ({data, onDelete, onToggleIncrease, onToggleRise}) => {
+const EmployeesList = ({data, onDelete, onToggleProp}) => {
 /*  metod map, array overkil */
      const elements = data.map(item => {
         //Partial destructuring
@@ -15,11 +15,8 @@ const EmployeesList = ({data, onDelete, onToggleIncrease, onToggleRise}) => {
             key ={id} 
             {...itemProps}
             onDelete={() => onDelete(id)}
-            onToggleIncrease ={() => onToggleIncrease(id)}
-            onToggleRise={()=> onToggleRise(id)}/>
-
-
-
+            //onToggleprop ={(e) => onToggleProp(id, e.currentTarget.getAttribute('data-toggle'))}/>
+            onToggleProp={(e) => onToggleProp(id, e.currentTarget.getAttribute('data-toggle'))}/>
         )
     })
     return (

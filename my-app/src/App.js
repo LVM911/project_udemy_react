@@ -29,13 +29,15 @@ class WhoAmI extends Component {
       })
       console.log(e.target.value);
     }
-     
+    // Fragment
+    // in you want to singht key
+    //  React.Fragment key="233"
     render() {
       //destructurisation
       const {name, surname, link} = this.props;
       const {position, years} = this.state;
       return (
-        <div>
+        < >
           <button onClick={this.nextYear}>{this.state.text}</button>
            <h1> {name.firstName} {surname}, 
            age  = {years}, 
@@ -43,7 +45,7 @@ class WhoAmI extends Component {
            <a href={link()}>My profile</a>
            <span>Enter a position</span>
            <input type="text" onChange={this.commitInputChanges}/>
-        </div>
+        </>
       )
     }
 }
