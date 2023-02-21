@@ -1,5 +1,34 @@
-import {Component, StrictMode} from 'react';
+import {Component} from 'react';
+import styled from 'styled-components'
 import './App.css';
+
+// Styled element
+const EmpItem = styled.div`
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px rda(0,0,0, .2);
+      a{
+        display: block;
+        margin: 10px 0 10px 0;
+        color: ${props => props.active ? 'orange' : 'black'};
+      }
+      input {
+        display: block;
+        margin-top: 10px;
+      }
+`;
+const Header = styled.h2`
+      font-size: 25px;
+`;
+export const Button = styled.button`
+      display: block;
+      padding: 5px 15px;
+      background-color: gold;
+      border: 1px solid rgba(0, 0, 0, .2);
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
+`;
+
 
 //function WhoAmI (props) { - only reading status
 // we can transfer function, objects, data 
@@ -37,28 +66,33 @@ class WhoAmI extends Component {
       const {name, surname, link} = this.props;
       const {position, years} = this.state;
       return (
-        < >
-          <button onClick={this.nextYear}>{this.state.text}</button>
-           <h1> {name.firstName} {surname}, 
+        <EmpItem active>
+          <Button onClick={this.nextYear}>{this.state.text}</Button>
+           <Header> {name.firstName} {surname}, 
            age  = {years}, 
-           position = {position}</h1>
+           position = {position}</Header>
            <a href={link()}>My profile</a>
            <span>Enter a position</span>
            <input type="text" onChange={this.commitInputChanges}/>
-        </>
+        </EmpItem>
       )
     }
 }
+const Warapper = styled.div`
+    width: 600px;
+    margin: 80px auto 0 auto;
+`;
+
 
 function App() {
   return (
-    <div className="App">
-     <StrictMode>
+
+     <Warapper>
         <WhoAmI name={{firstName: 'Diana'}} surname="Lytvyniuk" link={() => {return 'Diana.vn.ua'}}/>
         <WhoAmI name={{firstName: 'Viacheslav'}} surname="Lytvyniuk" link={() => {return 'Viacheslav.vn.ua'}}/>
         <WhoAmI name={{firstName: 'Rinat'}} surname="Lytvyniuk" link={() => {return 'Rinat.vn.ua'}}/>
-      </StrictMode> 
-    </div>
+      </Warapper> 
+
   );
 }
 

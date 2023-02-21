@@ -1,6 +1,7 @@
 
 import './employees-list-item.css';
 
+
 const EmployeesListItem = (props) => {
 
         const {name, salary, onDelete, onToggleProp, increase, rise} = props;
@@ -18,7 +19,11 @@ const EmployeesListItem = (props) => {
         //list-group-item.like .fa-star
         return (
             <li className={className}>
-                <span className="list-group-item-label" onClick={onToggleProp} data-toggle="rise">{name}</span>
+                <span className="list-group-item-label" 
+                onClick={onToggleProp} 
+                data-toggle="rise"
+                style={{fontSize: 20, color: 'red', transition: 'all', WebkitTransition:'all', msTransition: 'all'}} >   
+                    {name}</span>
                 <input type="text" className={classNameInput} defaultValue={salary + '$'}/>
                 <div className='d-flex justify-content-center align-items-center'>
                     <button type="button"
