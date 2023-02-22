@@ -10,7 +10,8 @@ class RandomChar extends Component {
     //Вызываем метод updateChar испольщуя котрокутор
     constructor (props) {
         super(props);
-        this.updateChar();
+       
+        console.log("1. constructor");
     }
 
     // Состояние
@@ -21,6 +22,16 @@ class RandomChar extends Component {
     }
     // создаем новое свойство внутри класа RandomChar
     marvelService = new MarvelServices(); 
+    // Лбые обновления, запросы к серверу делать в этом компонененте
+    componentDidMount () {
+        this.updateChar();
+        //this.timerId = setInterval(this.updateChar, 3000);
+        console.log("3. Mount");
+    }
+    componentWillUnmount () {
+       // clearInterval(this.timerId);
+        console.log("4. Unmount");
+    }
     // method записи, перезаписи, переририсовки, персонажа
     onCharLoaded = (char) => {
         this.setState({
@@ -48,6 +59,7 @@ class RandomChar extends Component {
 
 
     render() {
+        console.log("2. Render");
        // комплексная десструктуризация, вытаскивание данных из стейта
        const {char, loading, error} = this.state;
        const errorMessage = error ? <ErrorMessage/> : null;
