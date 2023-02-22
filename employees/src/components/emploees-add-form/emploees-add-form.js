@@ -2,13 +2,11 @@ import {Component} from 'react'
 import './emploees-add-form.scss';
 
 class EmployeesAddForm extends Component  {
-    constructor(props) {
-        super(props);
-        this.state = {
+        state = {
             name: '',
             salary: ''
         }
-    }
+
     // methods
     onValueChange = (e) => {
         this.setState({
@@ -25,6 +23,12 @@ class EmployeesAddForm extends Component  {
         })
 
     }
+    // Log
+    static onLog = () => {
+        console.log('Hey');
+    }
+    // Static variables
+    static logged = 'on';
 
     render () {
         const {name, salary} = this.state;
@@ -55,4 +59,6 @@ class EmployeesAddForm extends Component  {
     }
 }
 
+EmployeesAddForm.onLog();
+console.log(EmployeesAddForm.logged);
 export default EmployeesAddForm;
